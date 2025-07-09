@@ -1,0 +1,13 @@
+body {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.textBold{
+    font-weight: bolder
+}
+.transparent{
+    color: white;
+    background-color: transparent;
+}
+.w-30{
+    width: 30px !important;
+}
