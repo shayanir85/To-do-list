@@ -8,6 +8,29 @@ body {
     color: white;
     background-color: transparent;
 }
-.w-30{
-    width: 30px !important;
+div #add{
+    position: absolute;
+    display: inline-block;
+    padding: 0 1px 3px 0;
+    width: 30px;
+    right: 33%;
+}
+div #add:hover{
+    background-color: #19b2ff;
+    color: white !important; 
+    border: 2px solid #2c19ff;
+    transition: all 0.1s ease-in-out;
+}
+div #add:active{
+    background-color: #58a3ff;
+    color: rgb(255, 255, 255) !important; 
+    border: 3px solid #2c19ff;
+}
+#toDo{
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+}
+.con{
+    width: 35vw;
 }
