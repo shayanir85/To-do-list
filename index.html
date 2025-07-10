@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do-List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
@@ -19,21 +20,29 @@
             <img src="img/icon-todolist.png" width="36px" class="mt-2" height="36px" alt="">
             <h1 class=" text-Bold ">My To Do List</h1>
         </div>
-        <div class="d-flex justify-content-center align-items-center mb-3 ">
-            <input id="job" class="form-control col" type="text"><button id="add"
-                class=" col btn border-primary text-primary">+</button>
+        <div class="input-group d-flex justify-content-center align-items-center row mb-3 ">
+            <input placeholder="Write your task" id="job" class="form-control col" type="text">
+            <input class="form-control col" type="date">
+            <button id="add" class=" text-bg-primary col btn border-primary text-primary">+</button>
         </div>
         <div>
             <div id="toDo">
-                <div class="m-3">
-                    <input id='radio' type="checkbox">
-                    <i id='St'></i>
-                    <button id='edit' class="btn btn-success">
-                        <img src="img/edit_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                    </button>
-                    <button id='delete' class="btn btn-danger">
-                        <img src="img/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                    </button>
+                <div class="clearfix m-3 border rounded p-2">
+                    <div class="f-right">
+                        <button id='delete' class="btn btn-sm btn-outline-success">
+                            <i class="bi bi-check-all"></i>
+                        </button>
+                        <i id='St'>Task-1</i>
+                    </div>
+                    <div class="f-left  ">
+                        <button id='edit' class="btn btn-sm btn-outline-info">
+                            <i class="bi bi-pen"></i>
+                        </button>
+                        <button id='delete' class="btn btn-sm btn-outline-danger">
+                            <!-- <img src="img/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt=""> -->
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

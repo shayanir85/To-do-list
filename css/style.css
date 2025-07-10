@@ -1,36 +1,56 @@
 body {
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-.textBold{
+
+.textBold {
     font-weight: bolder
 }
-.transparent{
+
+.transparent {
     color: white;
     background-color: transparent;
 }
-div #add{
+
+div #add {
     position: absolute;
-    display: inline-block;
-    padding: 0 1px 3px 0;
-    width: 30px;
-    right: 33%;
+    right: -14.1%;
+    width: 50px !important;
+    color: white !important;
 }
-div #add:hover{
-    background-color: #19b2ff;
-    color: white !important; 
+
+div #add:hover {
+    background-color: #19b2ff !important;
+    color: white !important;
     border: 2px solid #2c19ff;
     transition: all 0.1s ease-in-out;
 }
-div #add:active{
-    background-color: #58a3ff;
-    color: rgb(255, 255, 255) !important; 
+
+div #add:active {
+    background-color: #58a3ff !important;
+    color: rgb(255, 255, 255) !important;
     border: 3px solid #2c19ff;
 }
-#toDo{
+
+#toDo {
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
 }
-.con{
-    width: 35vw;
+
+.con {  
+    width: 80vw;
+}
+
+.f-right {
+    float: left;
+}
+
+.clearfix {
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+
+.f-left {
+    float: right;
 }
