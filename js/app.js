@@ -15,32 +15,36 @@ task = {
 function showtasks(listTask) {
     toDo.innerHTML = listTask;
 }
+function remove(i) {
+    tasks.splice(i, 1); 
+    showtasks(generate_listTask()); 
+}
 function generate_listTask() {
     let list = '';
-    tasks.forEach((val , index) => {
-            list += `<div class="clearfix m-3 border rounded p-2">
+    tasks.forEach((val, index) => {
+        list += `<div class="clearfix m-3 border rounded p-2">
                     <div class="f-right">
                         <button id='' class="complete btn btn-sm btn-outline-success">
                             <i class="bi bi-check-all"></i>
                         </button>
-                        <i>${ index+1 +'&nbsp;'+ val.title}</i>&nbsp;<i>${val.Date}</i>
+                        <i>${val.title}</i>&nbsp;<i>${val.Date}</i>
                     </div>
                     <div class="f-left">
-                        <button id='' class="edit btn btn-sm btn-outline-info">
+                        <button  class="edit btn btn-sm btn-outline-info">
                             <i class="bi bi-pen"></i>
                         </button>
-                        <button id='' class="delete btn btn-sm btn-outline-danger">
+                        <button onclick='remove(${index})' id='' class="delete btn btn-sm btn-outline-danger">
                             <i class="bi bi-trash"></i>
                         </button>
                     </div>
                     </div>`;
     });
-return list;
+    return list;
 }
 function addTask() {
-    if(date.value === '' && job.value === ''){
+    if (date.value === '' && job.value === '') {
         alert('Please fill the date and task fields');
-    }else if (date.value === '') {
+    } else if (date.value === '') {
         alert('Please fill the date field');
         return;
     } else if (job.value === '') {
