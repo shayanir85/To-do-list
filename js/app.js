@@ -13,8 +13,7 @@ task = {
     title: '',
 };
 function showtasks(listTask) {
-    toDo.innerHTML = listTask;
-
+    toDo.innerHTML += listTask;
 }
 function generate_listTask() {
     let listTask = '';
@@ -24,7 +23,7 @@ function generate_listTask() {
                         <button id='' class="complete btn btn-sm btn-outline-success">
                             <i class="bi bi-check-all"></i>
                         </button>
-                        <i>${val.title}</i>&nbsp;<i>${val.Date}</i>
+                        <i>${ index+1 +'&nbsp;'+ val.title}</i>&nbsp;<i>${val.Date}</i>
                     </div>
                     <div class="f-left">
                         <button id='' class="edit btn btn-sm btn-outline-info">
