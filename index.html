@@ -22,24 +22,23 @@
         </div>
         <div class="input-group d-flex justify-content-center align-items-center row mb-3 ">
             <input placeholder="Write your task" id="job" class="form-control col" type="text">
-            <input class="form-control col" type="date">
-            <button id="add" class=" text-bg-primary col btn border-primary text-primary">+</button>
+            <input class="form-control col" id="date" type="date">
+            <button id="add" onclick="addTask()" class=" text-bg-primary col btn border-primary text-primary"><i class="bi bi-plus-lg"></i></button>
         </div>
         <div>
             <div id="toDo">
                 <div class="clearfix m-3 border rounded p-2">
                     <div class="f-right">
-                        <button id='delete' class="btn btn-sm btn-outline-success">
+                        <button id='complete' class="btn btn-sm btn-outline-success">
                             <i class="bi bi-check-all"></i>
                         </button>
-                        <i id='St'>Task-1</i>
+                        <i id='Task'>Task-1</i>
                     </div>
-                    <div class="f-left  ">
+                    <div class="f-left">
                         <button id='edit' class="btn btn-sm btn-outline-info">
                             <i class="bi bi-pen"></i>
                         </button>
                         <button id='delete' class="btn btn-sm btn-outline-danger">
-                            <!-- <img src="img/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt=""> -->
                             <i class="bi bi-trash"></i>
                         </button>
                     </div>

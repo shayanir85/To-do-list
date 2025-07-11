@@ -12,10 +12,7 @@ body {
 }
 
 div #add {
-    position: absolute;
-    right: -14.1%;
-    width: 50px !important;
-    color: white !important;
+color: white !important;
 }
 
 div #add:hover {
