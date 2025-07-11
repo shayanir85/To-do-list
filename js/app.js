@@ -13,12 +13,12 @@ task = {
     title: '',
 };
 function showtasks(listTask) {
-    toDo.innerHTML += listTask;
+    toDo.innerHTML = listTask;
 }
 function generate_listTask() {
-    let listTask = '';
+    let list = '';
     tasks.forEach((val , index) => {
-            listTask += `<div class="clearfix m-3 border rounded p-2">
+            list += `<div class="clearfix m-3 border rounded p-2">
                     <div class="f-right">
                         <button id='' class="complete btn btn-sm btn-outline-success">
                             <i class="bi bi-check-all"></i>
@@ -32,9 +32,10 @@ function generate_listTask() {
                         <button id='' class="delete btn btn-sm btn-outline-danger">
                             <i class="bi bi-trash"></i>
                         </button>
+                    </div>
                     </div>`;
     });
-showtasks(listTask);
+return list;
 }
 function addTask() {
     if(date.value === '' && job.value === ''){
@@ -56,6 +57,6 @@ function addTask() {
         date.value = '';
         job.value = '';
         job.focus();
-        generate_listTask();
+        showtasks(generate_listTask());
     }
 }
