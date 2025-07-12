@@ -12,6 +12,7 @@
 </head>
 
 <body class="bg-dark text-white">
+
     <div class="text-center">
         <em>shayan-iranpor</em>
     </div>
@@ -23,26 +24,38 @@
         <div class="input-group d-flex justify-content-center align-items-center row mb-3 ">
             <input placeholder="Write your task" id="job" class="form-control col" type="text">
             <input class="form-control col" id="date" type="date">
-            <button id="add" onclick="addTask()" class=" text-bg-primary col btn border-primary text-primary"><i class="bi bi-plus-lg"></i></button>
+            <button id="add" onclick="addTask()" class=" text-bg-primary col btn border-primary text-primary"><i
+                    class="bi bi-plus-lg"></i></button>
+            <button id="update" onclick="update()" class="update text-bg-primary col btn border-primary text-primary"><i
+                    class="bi bi-floppy"></i></button>
         </div>
         <div>
             <div id="toDo">
-                <!-- <div class="clearfix m-3 border rounded p-2">
-                    <div class="f-right">
-                        <button id='complete' class="btn btn-sm btn-outline-success">
-                            <i class="bi bi-check-all"></i>
-                        </button>
-                        <i id='Task'>Task-1</i>
-                    </div>
-                    <div class="f-left">
-                        <button id='edit' class="btn btn-sm btn-outline-info">
-                            <i class="bi bi-pen"></i>
-                        </button>
-                        <button id='delete' class="btn btn-sm btn-outline-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </div>
-                </div> -->
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="completed" class="">
+        <div>
+            <h1 class="text-center">
+                completed
+            </h1>
+            <div class="clearfix m-3 border rounded p-2">
+                <div class="f-right">
+                    <button class="complete btn btn-sm btn-outline-success">
+                        <i class="bi bi-check-all"></i>
+                    </button>
+                    <s></s>&nbsp;<s></s>
+                </div>
+                <div class="f-left">
+                    <button type="button" class="edit btn btn-sm btn-outline-info">
+                        <i id='update' class="bi bi-pen"></i>
+                    </button>
+                    <button class="delete btn btn-sm btn-outline-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

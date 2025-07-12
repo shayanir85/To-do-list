@@ -12,20 +12,39 @@ body {
 }
 
 div #add {
-color: white !important;
+    border-radius: 0px  5px 5px 0px ;
+    color: white !important;
+}
+
+div .update {
+    border-radius: 0px  5px 5px 0px ;
+    display: none;
+    color: white !important;
+}
+
+div .update:hover {
+    background-color: #19b2ff !important;
+    color: white !important;
+    border: 1px solid #2c19ff;
+    transition: all 0.1s ease-in-out;
 }
 
 div #add:hover {
     background-color: #19b2ff !important;
     color: white !important;
-    border: 2px solid #2c19ff;
+    border: 1px solid #2c19ff;
     transition: all 0.1s ease-in-out;
 }
 
 div #add:active {
     background-color: #58a3ff !important;
     color: rgb(255, 255, 255) !important;
-    border: 3px solid #2c19ff;
+    border: 2px solid #2c19ff;
+}
+div .update:active {
+    background-color: #58a3ff !important;
+    color: rgb(255, 255, 255) !important;
+    border: 2px solid #2c19ff;
 }
 
 #toDo {
@@ -34,7 +53,7 @@ div #add:active {
     border-radius: 10px;
 }
 
-.con {  
+.con {
     width: 80vw;
 }
 
