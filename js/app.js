@@ -6,6 +6,8 @@ const job = document.getElementById('job');
 const toDo = document.getElementById('toDo'); //Todo section
 const upd = document.getElementById('update'); //upd stands for update upd => update
 const completed = document.getElementById('completed');
+const header_completed = document.getElementById('head-completed');
+
 let CurrentIndex;
 tasks = JSON.parse(localStorage.getItem("tasks"));
 task = {
@@ -49,8 +51,10 @@ function remove(i) {
 
 function done(i) {
     if (tasks[i].complete == false) {
+        header_completed.classList.remove('d-none');
         tasks[i].complete = true;
     } else if (tasks[i].complete == true) {
+        header_completed.classList.add('d-none');
         tasks[i].complete = false;
     }
     localStorage.setItem('tasks', JSON.stringify(tasks))
@@ -85,14 +89,12 @@ function generate_completed_listTask() {
     let completed_list = '';
     tasks.forEach((val, index) => {
         if (tasks[index].complete == true) {
-            completed_list += `        <div>
-            <h1 class="text-center">
-                <i class="bi bi-check-all"></i>completed Tasks
-            </h1>
+            header_completed.classList.remove('d-none');
+            completed_list += `<div>
             <div class="clearfix m-3 border rounded p-2">
                 <div class="f-right">
-                    <button onclick="done(${index})" class="complete btn btn-sm btn-outline-success">
-                        <i class="bi bi-check-all"></i>
+                    <button onclick="done(${index})" class="complete btn btn-sm btn-outline-warning">
+                        <i class="bi bi-arrow-counterclockwise"></i>
                     </button>
                     <s>${val.title}</s>&nbsp;<s>${val.Date}</s>
                 </div>
