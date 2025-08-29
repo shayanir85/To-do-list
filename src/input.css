@@ -1,0 +1,4 @@
+@import "tailwindcss";
+.pointer-corsur:hover{
+    cursor: pointer;
+}
