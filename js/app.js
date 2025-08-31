@@ -1,6 +1,5 @@
 
 console.log(Obj_task);
-
 console.log(stored_tasks);
 function addTask() {
     if (task.value != '' && date.value != '' && title.value != '') {
@@ -17,15 +16,8 @@ function addTask() {
         task.focus();
         addToObj()
     } else if (task.value == '' || date.value == '' || title.value == '') {
-        setTimeout(() => {
-            Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: "please fill all inputs",
-                showConfirmButton: true,
-                timer: 1500
-            });
-        }, 1500);
+
+        
     }
 }
 
