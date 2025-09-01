@@ -16,10 +16,10 @@ body.addEventListener('click', () => {
 window.addEventListener('DOMContentLoaded', () => {
     if (screen.width > 985) {
         menu_element.style.left = '0px'
-        body.style.width = 'calc(100vw - 300px)'
+        body.style.width = 'calc(100% - 300px)'
         body.style.left = '300px'
     } else {
-        body.style.width = '100vw'
+        body.style.width = '100%'
         body.style.left = '0px'
         menu_element.style.left = '-300px'
     }
