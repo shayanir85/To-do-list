@@ -49,7 +49,7 @@ function SaveToDoLocalstorage() {
     localStorage.setItem('task', JSON.stringify(Obj_task));
 }
 function SaveToDidLocalstorage() {
-    localStorage.setItem('taskDid', JSON.stringify(checked_tasks_list));
+    localStorage.setItem('taskDid', JSON.stringify(Obj_task_did));
 }
 function GetFromToDoLocalstorage() {
     localStorage.setItem('task', JSON.stringify(Obj_task));
@@ -91,35 +91,41 @@ function generator() {
     });
 }
 function generator_checked() {
-    G_check_list.innerHTML = ``;
-    checked_tasks_list.forEach((tasks, index) => {
-        G_check_list.innerHTML += `        
-        <div class="bg-white m-[10%] rounded-[20px] p-[10px]">
-        <h1 class="m-2">
-        ${tasks.title}
-        </h1>
-        <div class=" m-2">
-        <h3>
-        ${tasks.tasks}
-        </h3> 
-        <i class='mt-3'>
-        Date: ${tasks.dates}
-        </i>
-        </div>
-        <div class="flex">
-        <button
-        onclick="del_checked(${index})"
-            class="bg-transparent m-3 flex hover:bg-red-500 text-red-700 font-semibold pointer-corsur hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded-[50px]">
-            delete
-            </button>
-            <button 
-            onclick="uncheck(${index})"
-            class="bg-transparent m-3 flex hover:bg-gray-500 text-gray-700 font-semibold pointer-corsur hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded-[50px]">
-            uncheck
-            </button>
+    if(Obj_task_did == ''){
+        G_check_list.innerHTML = `            <p class="text-center text-white mt-3">
+                nothing is checked
+            </p>`;
+    }else{
+        G_check_list.innerHTML = ``;
+        Obj_task_did.forEach((tasks, index) => {
+            G_check_list.innerHTML += `        
+            <div class="bg-white m-[10%] rounded-[20px] p-[10px]">
+            <h1 class="m-2">
+            ${tasks.title}
+            </h1>
+            <div class=" m-2">
+            <h3>
+            ${tasks.tasks}
+            </h3> 
+            <i class='mt-3'>
+            Date: ${tasks.dates}
+            </i>
             </div>
-            </div>`;
-    });
+            <div class="flex">
+            <button
+            onclick="del_checked(${index})"
+                class="bg-transparent m-3 flex hover:bg-red-500 text-red-700 font-semibold pointer-corsur hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded-[50px]">
+                delete
+                </button>
+                <button 
+                onclick="uncheck(${index})"
+                class="bg-transparent m-3 flex hover:bg-gray-500 text-gray-700 font-semibold pointer-corsur hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded-[50px]">
+                uncheck
+                </button>
+                </div>
+                </div>`;
+        });
+    }
 }
 function check(index) {
     taskDid.push(
@@ -133,16 +139,16 @@ function check(index) {
 }
 function addToDidObj() {
     if (stored_Did_tasks) {
-        checked_tasks_list = JSON.parse(stored_Did_tasks);
+        Obj_task_did = JSON.parse(stored_Did_tasks);
     } else {
-        checked_tasks_list = [];
+        Obj_task_did = [];
     }
-    checked_tasks_list = checked_tasks_list.concat(taskDid);
+    Obj_task_did = Obj_task_did.concat(taskDid);
     SaveToDidLocalstorage()
     taskDid = [];
     generator_checked();
     console.log('saved did obj:');
-    console.log(checked_tasks_list);
+    console.log(Obj_task_did);
     console.log(stored_tasks);
 
 }
@@ -214,10 +220,21 @@ function del(index) {
     generator()
 }
 function del_checked(index) {
-    checked_tasks_list.splice(index, 1)
+    Obj_task_did.splice(index, 1)
     SaveToDidLocalstorage()
     generator_checked()
 }
 function uncheck(index){
-
+    console.log(index)
+    taskToDo.push(
+     {
+        tasks: Obj_task_did[index].tasks,
+        dates: Obj_task_did[index].dates,
+        title: Obj_task_did[index].title
+     }   
+    );  
+    del_checked(index);
+    addToObj();
+    generator();
+    generator_checked();
 }
