@@ -67,7 +67,7 @@ function generator() {
         ${tasks.tasks}
         </h3> 
         <i class='mt-3'>
-        Date: ${tasks.dates}
+        <Button class="underline" onclick="filter_task('${tasks.dates}')">Date: ${tasks.dates}</Button>
         </i>
         </div>
         <div class="flex">
@@ -91,11 +91,11 @@ function generator() {
     });
 }
 function generator_checked() {
-    if(Obj_task_did == ''){
+    if (Obj_task_did == '') {
         G_check_list.innerHTML = `            <p class="text-center text-white mt-3">
                 nothing is checked
             </p>`;
-    }else{
+    } else {
         G_check_list.innerHTML = ``;
         Obj_task_did.forEach((tasks, index) => {
             G_check_list.innerHTML += `        
@@ -224,17 +224,66 @@ function del_checked(index) {
     SaveToDidLocalstorage()
     generator_checked()
 }
-function uncheck(index){
+function uncheck(index) {
     console.log(index)
     taskToDo.push(
-     {
-        tasks: Obj_task_did[index].tasks,
-        dates: Obj_task_did[index].dates,
-        title: Obj_task_did[index].title
-     }   
-    );  
+        {
+            tasks: Obj_task_did[index].tasks,
+            dates: Obj_task_did[index].dates,
+            title: Obj_task_did[index].title
+        }
+    );
     del_checked(index);
     addToObj();
     generator();
     generator_checked();
+}
+function filter_task(date) {
+    Obj_task.forEach((tasks, index) => {
+        console.log(date,tasks.dates)
+        if (date === tasks.dates) {
+            checked_header.innerHTML = ``;
+            generate.innerHTML = ``      
+            G_check_list.innerHTML = ``;  
+            generate.innerHTML += `        
+        <div class=" bg-white m-[10%] rounded-[20px] p-[10px]">
+        <h1 class="m-2">
+        ${tasks.title}
+        </h1>
+        <div class=" m-2">
+        <h3>
+        ${tasks.tasks}
+        </h3> 
+        <i class='mt-3'>
+        Date: ${tasks.dates}
+        </i>
+        </div>
+        <div class="flex">
+        <button
+        onclick="del(${index})"
+            class="bg-transparent m-3 flex hover:bg-red-500 text-red-700 font-semibold pointer-corsur hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded-[50px]">
+            delete
+            </button>
+            <button
+            onclick="edit(${index})"
+            class="bg-transparent m-3 flex hover:bg-blue-500 text-blue-700 font-semibold pointer-corsur hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-[50px]">
+            edit
+            </button>
+            <button 
+            onclick="check(${index})"
+            class="bg-transparent m-3 flex hover:bg-gray-500 text-gray-700 font-semibold pointer-corsur hover:text-white py-2 px-4 border border-gray-500 hover:border-transparent rounded-[50px]">
+            check
+            </button>
+            </div>
+            </div>`;
+        }
+
+    });
+    let helper =  `<div class="text-center"><button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onclick="defualt()">back to all list</button></div>`
+    generate.innerHTML += helper
+}
+function defualt(){
+    checked_header.innerHTML = `checked`;
+    addToObj()
+    addToDidObj()
 }

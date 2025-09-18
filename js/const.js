@@ -7,6 +7,7 @@ const generate = document.querySelector('.generator');
 const G_check_list = document.querySelector('.generator-checked');
 const stored_tasks = localStorage.getItem('task');
 const stored_Did_tasks = localStorage.getItem('taskDid');
+const checked_header = document.querySelector('.checked-header');
 let Obj_task = {};
 let taskToDo = [];
 let taskDid = [];
