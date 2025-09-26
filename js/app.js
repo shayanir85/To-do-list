@@ -47,7 +47,6 @@ function addToObj() {
     if (stored_tasks) {
         Obj_task = JSON.parse(stored_tasks);
     }
-    // Fixed: Remove duplicate concatenation
     Obj_task = Obj_task.concat(taskToDo);
     SaveToDoLocalstorage()
     taskToDo = [];
