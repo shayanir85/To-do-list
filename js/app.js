@@ -1,5 +1,16 @@
-addToObj()
-addToDidObj()
+
+document.addEventListener('DOMContentLoaded',()=>{
+    if (stored_tasks) {
+        Obj_task = JSON.parse(stored_tasks);
+    }
+    generator();
+    if (stored_Did_tasks) {
+        Obj_task_did = JSON.parse(stored_Did_tasks);
+    }
+    generator_checked();
+    console.log(Obj_task)
+});
+
 function addTask() {
     if (task.value != '' && date.value != '' && title.value != '') {
         taskToDo.push(
@@ -14,28 +25,29 @@ function addTask() {
         title.value = ''
         task.focus();
         addToObj()
-
+        
     } else if (task.value == '' || date.value == '' || title.value == '') {
-        setTimeout(() => {
-            warning.style.transform = 'translateY(-100px)';
-            warning.style.opacity = '1';
-
-            setTimeout(() => {
-
-                warning.style.transform = 'translateY(-850px)';
-                warning.style.opacity = '0';
-            }, 3000)
-        }, 500)
+        showWarning()
     }
 }
 
+function showWarning(){
+    setTimeout(() => {
+        warning.style.transform = 'translateY(-100px)';
+        warning.style.opacity = '1';
+
+        setTimeout(() => {
+            warning.style.transform = 'translateY(-850px)';
+            warning.style.opacity = '0';
+        }, 3000)
+    }, 500)
+}
 
 function addToObj() {
     if (stored_tasks) {
         Obj_task = JSON.parse(stored_tasks);
-    } else {
-        Obj_task = [];
     }
+    // Fixed: Remove duplicate concatenation
     Obj_task = Obj_task.concat(taskToDo);
     SaveToDoLocalstorage()
     taskToDo = [];
@@ -43,17 +55,20 @@ function addToObj() {
     console.log('saved obj:');
     console.log(Obj_task);
     console.log(stored_tasks);
-
 }
+
 function SaveToDoLocalstorage() {
     localStorage.setItem('task', JSON.stringify(Obj_task));
+    stored_tasks = localStorage.getItem('task'); 
 }
+
 function SaveToDidLocalstorage() {
     localStorage.setItem('taskDid', JSON.stringify(Obj_task_did));
+    stored_Did_tasks = localStorage.getItem('taskDid'); 
 }
-function GetFromToDoLocalstorage() {
-    localStorage.setItem('task', JSON.stringify(Obj_task));
-}
+
+
+
 function generator() {
     generate.innerHTML = ``;
     Obj_task.forEach((tasks, index) => {
@@ -90,8 +105,9 @@ function generator() {
             </div>`;
     });
 }
+
 function generator_checked() {
-    if (Obj_task_did == '') {
+    if (!Obj_task_did || Obj_task_did.length === 0) { 
         G_check_list.innerHTML = `            <p class="text-center text-white mt-3">
                 nothing is checked
             </p>`;
@@ -127,6 +143,7 @@ function generator_checked() {
         });
     }
 }
+
 function check(index) {
     taskDid.push(
         {
@@ -134,33 +151,32 @@ function check(index) {
             dates: Obj_task[index].dates,
             title: Obj_task[index].title,
         });
+
     addToDidObj()
     del(index)
 }
+
 function addToDidObj() {
     if (stored_Did_tasks) {
         Obj_task_did = JSON.parse(stored_Did_tasks);
-    } else {
-        Obj_task_did = [];
     }
+    
     Obj_task_did = Obj_task_did.concat(taskDid);
     SaveToDidLocalstorage()
     taskDid = [];
     generator_checked();
     console.log('saved did obj:');
     console.log(Obj_task_did);
-    console.log(stored_tasks);
-
 }
 
 function edit(index) {
     update_inputs.innerHTML = `        <div class="p-5">
     <div class="join rounded-[50px] overflow-hidden border-[2px] border-blue-600 w-auto flex">
-    <input id="task" value="${Obj_task[index].tasks}" type="text" placeholder="your task"
+    <input id="edit_task" value="${Obj_task[index].tasks}" type="text" placeholder="your task"
     class="   rounded-l-[50px] text-gray p-2 form-control w-[25%] bg-cyan-100">
-    <input value="${Obj_task[index].title}" id="title" type="text" placeholder="title"
+    <input value="${Obj_task[index].title}" id="edit_title" type="text" placeholder="title"
     class="   text-gray p-2 form-control w-[25%] bg-cyan-100">
-    <input id="date" type="date" value="${Obj_task[index].dates}" class=" p-2 form-control  rounded-r-[50px] w-[50%] text-gray bg-cyan-100">
+    <input id="edit_date" type="date" value="${Obj_task[index].dates}" class=" p-2 form-control  rounded-r-[50px] w-[50%] text-gray bg-cyan-100">
     </div>
     <div>
     <button onclick="update(${index})"
@@ -169,12 +185,12 @@ function edit(index) {
     </button>
     </div>
     </div>`;
-
 }
+
 function update(index) {
-    const task = document.getElementById('task');
-    const date = document.getElementById('date');
-    const title = document.getElementById('title');
+    const task = document.getElementById('edit_task'); 
+    const date = document.getElementById('edit_date');
+    const title = document.getElementById('edit_title');
     if (task.value != '' && date.value != '' && title.value != '') {
         Obj_task[index].title = title.value;
         Obj_task[index].dates = date.value;
@@ -198,32 +214,26 @@ function update(index) {
             </div>
             </div>
             `;
-        title.value = '';
-        date.value = '';
         task.value = '';
+        date.value = '';
+       title.value = '';
     } else if (task.value == '' || date.value == '' || title.value == '') {
-        setTimeout(() => {
-            warning.style.transform = 'translateY(-100px)';
-            warning.style.opacity = '1';
-
-            setTimeout(() => {
-
-                warning.style.transform = 'translateY(-850px)';
-                warning.style.opacity = '0';
-            }, 3000)
-        }, 500)
+        showWarning(); 
     }
 }
+
 function del(index) {
-    Obj_task.splice(index, 1)
+    Obj_task.splice(index, 1);
     SaveToDoLocalstorage()
     generator()
 }
+
 function del_checked(index) {
-    Obj_task_did.splice(index, 1)
+    Obj_task_did.splice(index, 1); 
     SaveToDidLocalstorage()
     generator_checked()
 }
+
 function uncheck(index) {
     console.log(index)
     taskToDo.push(
@@ -235,17 +245,16 @@ function uncheck(index) {
     );
     del_checked(index);
     addToObj();
-    generator();
-    generator_checked();
 }
+
 function filter_task(date) {
-    Obj_task.forEach((tasks, index) => {
+    let filtered_tasks = Obj_task.filter(task => task.dates === date);
+    checked_header.innerHTML = ``;
+    generate.innerHTML = ``      
+    G_check_list.innerHTML = ``;  
+    filtered_tasks.forEach((tasks, index) => {
         console.log(date,tasks.dates)
-        if (date === tasks.dates) {
-            checked_header.innerHTML = ``;
-            generate.innerHTML = ``      
-            G_check_list.innerHTML = ``;  
-            generate.innerHTML += `        
+        generate.innerHTML += `        
         <div class=" bg-white m-[10%] rounded-[20px] p-[10px]">
         <h1 class="m-2">
         ${tasks.title}
@@ -276,14 +285,15 @@ function filter_task(date) {
             </button>
             </div>
             </div>`;
-        }
-
+        
+        console.log(index)
     });
     let helper =  `<div class="text-center"><button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onclick="defualt()">back to all list</button></div>`
     generate.innerHTML += helper
 }
+
 function defualt(){
     checked_header.innerHTML = `checked`;
-    addToObj()
-    addToDidObj()
+    generator(); 
+    generator_checked(); 
 }

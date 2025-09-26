@@ -12,3 +12,5 @@ let Obj_task = {};
 let taskToDo = [];
 let taskDid = [];
 let Obj_task_did = {};
+Obj_task = stored_tasks ? JSON.parse(stored_tasks) : [];
+Obj_task_did = stored_Did_tasks ? JSON.parse(stored_Did_tasks) : [];
