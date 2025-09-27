@@ -1,5 +1,5 @@
 
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded', () => {
     if (stored_tasks) {
         Obj_task = JSON.parse(stored_tasks);
     }
@@ -25,13 +25,13 @@ function addTask() {
         title.value = ''
         task.focus();
         addToObj()
-        
+
     } else if (task.value == '' || date.value == '' || title.value == '') {
         showWarning()
     }
 }
 
-function showWarning(){
+function showWarning() {
     setTimeout(() => {
         warning.style.transform = 'translateY(-100px)';
         warning.style.opacity = '1';
@@ -58,12 +58,12 @@ function addToObj() {
 
 function SaveToDoLocalstorage() {
     localStorage.setItem('task', JSON.stringify(Obj_task));
-    stored_tasks = localStorage.getItem('task'); 
+    stored_tasks = localStorage.getItem('task');
 }
 
 function SaveToDidLocalstorage() {
     localStorage.setItem('taskDid', JSON.stringify(Obj_task_did));
-    stored_Did_tasks = localStorage.getItem('taskDid'); 
+    stored_Did_tasks = localStorage.getItem('taskDid');
 }
 
 
@@ -106,7 +106,7 @@ function generator() {
 }
 
 function generator_checked() {
-    if (!Obj_task_did || Obj_task_did.length === 0) { 
+    if (!Obj_task_did || Obj_task_did.length === 0) {
         G_check_list.innerHTML = `            <p class="text-center text-white mt-3">
                 nothing is checked
             </p>`;
@@ -115,8 +115,8 @@ function generator_checked() {
         Obj_task_did.forEach((tasks, index) => {
             G_check_list.innerHTML += `        
             <div class="bg-white m-[10%] rounded-[20px] p-[10px]">
-            <h1 class="m-2">
-            ${tasks.title}
+            <h1 class="m-2"><s>
+            ${tasks.title}</s>
             </h1>
             <div class=" m-2">
             <h3>
@@ -159,7 +159,7 @@ function addToDidObj() {
     if (stored_Did_tasks) {
         Obj_task_did = JSON.parse(stored_Did_tasks);
     }
-    
+
     Obj_task_did = Obj_task_did.concat(taskDid);
     SaveToDidLocalstorage()
     taskDid = [];
@@ -187,7 +187,7 @@ function edit(index) {
 }
 
 function update(index) {
-    const task = document.getElementById('edit_task'); 
+    const task = document.getElementById('edit_task');
     const date = document.getElementById('edit_date');
     const title = document.getElementById('edit_title');
     if (task.value != '' && date.value != '' && title.value != '') {
@@ -215,9 +215,9 @@ function update(index) {
             `;
         task.value = '';
         date.value = '';
-       title.value = '';
+        title.value = '';
     } else if (task.value == '' || date.value == '' || title.value == '') {
-        showWarning(); 
+        showWarning();
     }
 }
 
@@ -228,7 +228,7 @@ function del(index) {
 }
 
 function del_checked(index) {
-    Obj_task_did.splice(index, 1); 
+    Obj_task_did.splice(index, 1);
     SaveToDidLocalstorage()
     generator_checked()
 }
@@ -249,10 +249,10 @@ function uncheck(index) {
 function filter_task(date) {
     let filtered_tasks = Obj_task.filter(task => task.dates === date);
     checked_header.innerHTML = ``;
-    generate.innerHTML = ``      
-    G_check_list.innerHTML = ``;  
+    generate.innerHTML = ``
+    G_check_list.innerHTML = ``;
     filtered_tasks.forEach((tasks, index) => {
-        console.log(date,tasks.dates)
+        console.log(date, tasks.dates)
         generate.innerHTML += `        
         <div class=" bg-white m-[10%] rounded-[20px] p-[10px]">
         <h1 class="m-2">
@@ -284,15 +284,15 @@ function filter_task(date) {
             </button>
             </div>
             </div>`;
-        
+
         console.log(index)
     });
-    let helper =  `<div class="text-center"><button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onclick="defualt()">back to all list</button></div>`
+    let helper = `<div class="text-center"><button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onclick="defualt()">back to all list</button></div>`
     generate.innerHTML += helper
 }
 
-function defualt(){
+function defualt() {
     checked_header.innerHTML = `checked`;
-    generator(); 
-    generator_checked(); 
+    generator();
+    generator_checked();
 }
